@@ -77,7 +77,8 @@ env:
 # -- Global image settings. Arkime uses the same image for all components. 
 image: 
   repository: ghcr.io/arkime/arkime/arkime
-  tag: snapshot-v5-latest
+  tag: v5-latest
+  # tag: v5-ja4-latest
   # -- Global image pull policy for container images.
   pullPolicy: Always
 # -- Global image pull secrets for container images.
