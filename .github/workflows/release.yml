@@ -27,14 +27,14 @@ jobs:
         with:
           files: packaged/*.tgz
 
-      # - name: Build Helm repo index
-      #   run: |
-      #     mkdir public
-      #     cp packaged/*.tgz public/
-      #     helm repo index public --url https:/mihudec.github.io/arkime-helm/
+      - name: Build Helm repo index
+        run: |
+          mkdir public
+          cp packaged/*.tgz public/
+          helm repo index public --url https:/mihudec.github.io/arkime-helm/
 
-      # - name: Publish to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v4
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./public
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
