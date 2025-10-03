@@ -1,0 +1,40 @@
+name: Package Helm Chart
+
+on:
+  release:
+    types: [created]   # trigger when a release is created
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.19.0
+
+      - name: Package chart
+        run: |
+          helm dependency update || true
+          helm package . --destination packaged
+
+      - name: Upload packaged chart to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: packaged/*.tgz
+
+      # - name: Build Helm repo index
+      #   run: |
+      #     mkdir public
+      #     cp packaged/*.tgz public/
+      #     helm repo index public --url https:/mihudec.github.io/arkime-helm/
+
+      # - name: Publish to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./public
