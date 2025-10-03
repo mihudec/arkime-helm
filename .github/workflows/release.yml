@@ -31,7 +31,7 @@ jobs:
         run: |
           mkdir public
           cp packaged/*.tgz public/
-          helm repo index public --url https:/mihudec.github.io/arkime-helm/
+          helm repo index public --url https://mihudec.github.io/arkime-helm/
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
